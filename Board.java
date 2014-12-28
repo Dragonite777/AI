@@ -43,12 +43,12 @@ public class Board
 		this.hunger = 0;
 		in = new Scanner(System.in);
 		state = AIState.RUNNING;
+		play();
 	}
 	
 	public void play()
-	{
-		
-		while(!in.nextLine().equalsIgnoreCase("q") || state != AIState.WIN)
+	{	
+		while(!in.nextLine().equalsIgnoreCase("q") || state == AIState.RUNNING)
 		{
 			display();
 			makeMove();
@@ -59,8 +59,8 @@ public class Board
 	
 	private void makeMove()
 	{
-		playerX = currMoves[minDist(getMoves())][0];
-		playerY = currMoves[minDist(getMoves())][1];
+		setPlayer(currMoves[minDist(getMoves())][0], currMoves[minDist(getMoves())][1]);
+		update();
 	}
 	
 	private int[][] getMoves()
